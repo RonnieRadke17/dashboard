@@ -17,6 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            // Agregamos la columna role_id que referenciará a la tabla roles
+            $table->unsignedBigInteger('role_id')->nullable();
+            // Definimos la llave foránea. Si se elimina un rol, se asigna null al campo role_id
+            $table->foreign('role_id')
+            ->references('id')
+            ->on('roles')
+            ->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });

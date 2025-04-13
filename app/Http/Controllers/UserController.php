@@ -59,13 +59,14 @@ class UserController extends Controller
                         $message->to($email)->subject($subject);
                 });
 
+                /* implementar failedjobs */
                 return redirect()->route('users.index')->with('success', 'User created successfully.');
             }else {//sino redirecciona a la ruta de event con un mensaje de error
-                return redirect()->route('users.index')->with('success', 'Error.');
+                return redirect()->route('users.index')->with('success', 'Error en envio de correo.');
             }
 
         } catch (\Exception $e) {
-            return redirect()->route('users.index')->with('success', 'Error.');
+            return redirect()->route('users.index')->with('success', $e->getMessage());
         }
     }
 

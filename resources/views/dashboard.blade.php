@@ -14,4 +14,30 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deviceInfo = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                screenWidth: screen.width,
+                screenHeight: screen.height,
+                innerWidth: window.innerWidth,
+                innerHeight: window.innerHeight,
+            };
+    
+            console.log("Información del dispositivo:", deviceInfo);
+    
+            // Si deseas enviarlo a Laravel
+            /* fetch('/device-info', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify(deviceInfo)
+            }); */
+        });
+    </script>
+    
 </x-app-layout>

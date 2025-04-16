@@ -52,4 +52,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->role && $this->role->name === 'admin';
+    }
+    
+    public function devices()
+    {
+        return $this->hasMany(\App\Models\Device::class);
+    }
+
+
 }

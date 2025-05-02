@@ -32,6 +32,7 @@ class DeviceController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request);
         $validated = $request->validate([
             'devicename'    => 'required|string|max:255',
             'device_model'  => 'nullable|string|max:255',
@@ -39,12 +40,16 @@ class DeviceController extends Controller
             'latitude'      => 'nullable|numeric',
             'longitude'     => 'nullable|numeric',
             'baterylevel'   => 'nullable|string|min:0|max:100',
+            'types_id'      => 'required|numeric',
         ], [
             'devicename.required'   => 'El nombre del dispositivo es obligatorio.',
             'devicename.max'        => 'El nombre no debe superar los 255 caracteres.',
             'baterylevel.numeric'   => 'La batería debe ser un número.',
             'baterylevel.min'       => 'La batería no puede ser menor a 0.',
             'baterylevel.max'       => 'La batería no puede ser mayor a 100.',
+    
+            'types_id.required'   => 'Selecciona el tipo de dispositivo.',
+            'types_id.numeric'   => 'Número de dispositivo.',
         ]);
 
         Device::create([
